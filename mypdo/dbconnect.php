@@ -1,6 +1,7 @@
 <?php
 
-function myConnect(){
+function myConnect()
+{
     try {
         $dbh = new PDO('mysql:host=93.189.42.2;dbname=myfs', 'boris', '54321');
         return $dbh;
@@ -11,3 +12,4 @@ function myConnect(){
 }
 
 $pdo = myConnect();
+

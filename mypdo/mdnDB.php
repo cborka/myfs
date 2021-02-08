@@ -46,10 +46,13 @@ EOS;
 //
 // Возвращает последние 10 записей
 //
-function getRecords () {
+function getRecords ($where_clause = '')
+{
     global $pdo;
 
-    $sql = 'SELECT * FROM my_daily_news ORDER BY dt DESC LIMIT 10';
+    $where = ($where_clause != '') ? 'WHERE ' . escapeshellcmd($where_clause) : '';
+
+    $sql = 'SELECT * FROM my_daily_news ' . $where . ' ORDER BY dt DESC LIMIT 10';
 
     $statement = $pdo->prepare($sql);
     $statement->execute();

@@ -1,23 +1,34 @@
 <?php include 'header.php'?>
+
 <a href="/">Домой</a><br>
 <H2>Мои ежедневные новости</H2>
 My daily news (mdn)<br>
 Последние десять записей в порядке убывания дат<br>
 <hr>
+<form action="mdnList.php" method="post">
+    Поиск по тексту
+    <input type="text" name="search" value="<?php echo $_POST['search'] ?>">
+    <button>Найти</button>
+</form>
+<hr>
 
 <?php
 require_once '../mypdo/mdnDB.php';
 
-$records = getRecords();
+if ($_POST['search'] == '') {
+    $records = getRecords();
+} else {
+    $records = getRecords('content LIKE \'%' . $_POST['search'] . '%\'');
+}
 
-foreach($records as $rec) { ?>
+foreach ($records as $rec) { ?>
 
     <form action="mdnForm.php" method="post">
 
 <!-- Скрытые поля для передачи данных методом POST-->
         <input type="number" name="id" value="<?php echo $rec['id']; ?>" readonly hidden>
-        <input type="datetime-local" name="dt" value=
-            "<?php echo date('Y-m-d\TH:i', strtotime($rec['dt'])); ?>" hidden>
+        <input type="datetime-local" name="dt"
+               value="<?php echo date('Y-m-d\TH:i', strtotime($rec['dt'])); ?>" hidden>
         <input type="text" name="header" value="<?php echo $rec['header']; ?>" hidden>
         <textarea name="content" rows="10" cols="60" hidden><?php echo $rec['content']; ?></textarea>
 <!-- Вывод на экран-->

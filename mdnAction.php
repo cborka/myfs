@@ -11,8 +11,9 @@ else { ?>
 
 <script>
     alert('Неверный пароль, ваши труды пропали! Увы!');
-    window.open ('/views/mdnList.php','_self',false);
+    window.open('/views/mdnList.php','_self',false);
 </script>
 
 <?php }
   // header('location: /views/mdnList.php');
+
