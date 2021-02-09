@@ -6,9 +6,9 @@ My daily news (mdn)<br>
 Последние десять записей в порядке убывания дат<br>
 <hr>
 <form action="mdnList.php" method="post">
-    Поиск по тексту
+    Фильтр по тексту
     <input type="text" name="search" value="<?php echo $_POST['search'] ?>">
-    <button>Найти</button>
+    <button>Применить</button>
 </form>
 <hr>
 
